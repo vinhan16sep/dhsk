@@ -66,34 +66,95 @@
                                     <a><i class="fa fa-money margin-r-5"></i> Vốn điều lệ năm 2017 (triệu VND)</a> <p class="pull-right"><?php echo $company['equity_2017'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-money margin-r-5"></i> Vốn chủ sở hữu (triệu VND)</a> <p class="pull-right"><?php echo $company['owner_equity'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Vốn chủ sở hữu 2015 (triệu VND)</a> <p class="pull-right"><?php echo $company['owner_equity_2015'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu DN</a> <p class="pull-right"><?php echo $company['total_income'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Vốn chủ sở hữu 2016 (triệu VND)</a> <p class="pull-right"><?php echo $company['owner_equity_2016'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT lĩnh vực sx phần mềm (Triệu VND)</a> <p class="pull-right"><?php echo $company['software_income'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Vốn chủ sở hữu 2017 (triệu VND)</a> <p class="pull-right"><?php echo $company['owner_equity_2017'] ?></p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu DN 2015</a> <p class="pull-right"><?php echo $company['total_income_2015'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu dịch vụ CNTT (triệu VND)</a> <p class="pull-right"><?php echo $company['it_income'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu DN 2016</a> <p class="pull-right"><?php echo $company['total_income_2016'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT xuất khẩu (USD)</a> <p class="pull-right"><?php echo $company['export_income'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu DN 2017</a> <p class="pull-right"><?php echo $company['total_income_2017'] ?></p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT lĩnh vực sx phần mềm 2015 (Triệu VND)</a> <p class="pull-right"><?php echo $company['software_income_2015'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số lao động của DN</a> <p class="pull-right"><?php echo $company['total_labor'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT lĩnh vực sx phần mềm 2016 (Triệu VND)</a> <p class="pull-right"><?php echo $company['software_income_2016'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số LTV</a> <p class="pull-right"><?php echo $company['total_ltv'] ?></p>
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT lĩnh vực sx phần mềm 2017 (Triệu VND)</a> <p class="pull-right"><?php echo $company['software_income_2017'] ?></p>
                                 </li>
+
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu dịch vụ CNTT 2015 (triệu VND)</a> <p class="pull-right"><?php echo $company['it_income_2015'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu dịch vụ CNTT 2016 (triệu VND)</a> <p class="pull-right"><?php echo $company['it_income_2016'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng doanh thu dịch vụ CNTT 2017 (triệu VND)</a> <p class="pull-right"><?php echo $company['it_income_2017'] ?></p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT xuất khẩu (USD) 2015</a> <p class="pull-right"><?php echo $company['export_income_2015'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT xuất khẩu (USD) 2016</a> <p class="pull-right"><?php echo $company['export_income_2016'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-money margin-r-5"></i> Tổng DT xuất khẩu (USD) 2017</a> <p class="pull-right"><?php echo $company['export_income_2017'] ?></p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số lao động của DN 2015</a> <p class="pull-right"><?php echo $company['total_labor_2015'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số lao động của DN 2016</a> <p class="pull-right"><?php echo $company['total_labor_2016'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số lao động của DN 2017</a> <p class="pull-right"><?php echo $company['total_labor_2017'] ?></p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số LTV 2015</a> <p class="pull-right"><?php echo $company['total_ltv_2015'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số LTV 2016</a> <p class="pull-right"><?php echo $company['total_ltv_2016'] ?></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <a><i class="fa fa-users margin-r-5"></i> Tổng số LTV 2017</a> <p class="pull-right"><?php echo $company['total_ltv_2017'] ?></p>
+                                </li>
+
                                 <li class="list-group-item" style="min-height:200px;">
                                     <a><i class="fa fa-file margin-r-5"></i> Giới thiệu chung</a> <p class="" style="padding-left:20px;"><?php echo $company['description'] ?></p>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-circle margin-r-5"></i> SP dịch vụ chính của DN</a> <p class="" style="padding-left:20px;"><?php echo $company['main_service'] ?></p>
+                                    <a><i class="fa fa-circle margin-r-5"></i> SP dịch vụ chính của DN</a>
+                                    <?php if(!empty($company['main_service'])): ?>
+                                    <?php $main_service = json_decode($company['main_service']) ?>
+                                    <?php foreach ($main_service as $key => $value): ?>
+                                        <p class="" style="padding-left:20px;"><?php echo $value ?></p>
+                                    <?php endforeach ?>
+                                    <?php endif; ?>
                                 </li>
                                 <li class="list-group-item">
-                                    <a><i class="fa fa-globe margin-r-5"></i> Thị trường chính</a> <p class="" style="padding-left:20px;"><?php echo $company['main_market'] ?></p>
+                                    <a><i class="fa fa-globe margin-r-5"></i> Thị trường chính</a>
+                                    <?php if(!empty($company['main_market'])): ?>
+                                    <?php $main_market = json_decode($company['main_market']) ?>
+                                    <?php foreach ($main_market as $key => $value): ?>
+                                        <p class="" style="padding-left:20px;"><?php echo $value ?></p>
+                                    <?php endforeach ?>
+                                    <?php endif; ?>
                                 </li>
                             </ul>
                         </div>

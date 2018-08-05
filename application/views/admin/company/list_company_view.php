@@ -28,7 +28,7 @@
                                     <tr>
                                         <td><?php echo $stt++ ?></td>
                                         <td><?php echo $value['company'] ?></td>
-                                        <td data-company="<?php echo $value['client_id'] ?>">
+                                        <td data-client="<?php echo $value['client_id'] ?>" data-company="<?php echo $value['id'] ?>">
                                             <ul class="select2-selection__rendered ">
                                                 <?php if (!empty($value['member_name'])): ?>
                                                     <?php foreach ($value['member_name'] as $k => $val): ?>
@@ -77,12 +77,13 @@
     $('.change-member').click(function(){
         var change_member = $(this);
         var member_id = $(this).data('memberid');
+        var client_id = $(this).parents('td').data('client');
         var company_id = $(this).parents('td').data('company');
         if(confirm('Chắc chắn xoá thành viên hội đồng?')){
             jQuery.ajax({
                 method: "get",
-                url: url + '/admin/company/change_member',
-                data: {member_id : member_id, company_id : company_id},
+                url: url + '/dhsk/admin/company/change_member',
+                data: {member_id : member_id, client_id : client_id, company_id : company_id},
                 success: function(result){
                     if(JSON.parse(result).isExitsts == true){
                         $(change_member).parents('li').fadeOut();

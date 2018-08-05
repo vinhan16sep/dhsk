@@ -45,6 +45,8 @@ class Product extends Member_Controller{
             redirect('member/dashboard', 'refresh');
         }
 		$this->data['product'] = $product;
+        // echo '<pre>';
+        // print_r($product);die;
 		$this->render('member/product/detail_product_view');
 	}
 

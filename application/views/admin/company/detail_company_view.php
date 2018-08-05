@@ -4,7 +4,7 @@
         <h3>Thông tin doanh nghiệp: <span style="color:red;"><?php echo $company['company']; ?></span></h3>
     </div>
     <section class="content">
-
+        <input type="hidden" name="company_id" value="<?php echo $this->uri->segment(4) ?>" id="company_id">
         <div class="row">
             <!-- /.col -->
             <div class="col-md-6">
@@ -190,15 +190,17 @@
     $('.change-member').change(function(){
         var member_id = $(this).val();
         var client_id = $(this).parents('li').data('company');
+        var company_id = $('#company_id').val();
         if(confirm('Thêm người quản lý cho doanh nghiệp này?')){
             jQuery.ajax({
                 method: "get",
-                url: url + '/admin/company/add_member',
-                data: {member_id : member_id, client_id : client_id},
+                url: url + '/dhsk/admin/company/add_member',
+                data: {member_id : member_id, client_id : client_id, company_id : company_id},
                 success: function(result){
                     if(JSON.parse(result).isExitsts == true){
                         alert('Thêm thành công');
-                        window.location.href = "http://dangky.danhhieusaokhue.vn/admin/company";
+                        // window.location.href = "http://dangky.danhhieusaokhue.vn/admin/company";
+                        window.location.href = "http://localhost/dhsk/admin/company";
                     }
                 }
             });

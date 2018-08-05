@@ -14,49 +14,88 @@ class Company extends Member_Controller{
         $this->excel = new PHPExcel();
 	}
 
-	public function index($id){
-		$this->output->enable_profiler(TRUE);
-		$this->load->model('users_model');
-		$members = $this->users_model->fetch_all_member();
-		// print_r($members);die;
-		$this->data['members'] = $members;
-		$keywords = '';
+	// public function index($id){
+	// 	$this->load->model('users_model');
+	// 	$members = $this->users_model->fetch_all_member();
+	// 	$this->data['members'] = $members;
+	// 	$keywords = '';
+ //        if($this->input->get('search')){
+ //            $keywords = $this->input->get('search');
+ //        }
+ //        $this->data['keywords'] = $keywords;
+ //        $total_rows  = $this->information_model->count_company_search_by_member_id($id);
+ //        if($keywords != ''){
+ //            $total_rows  = $this->information_model->count_company_search_by_member_id($id, $keywords);
+ //        }
+	// 	$this->load->library('pagination');
+	// 	$config = array();
+	// 	$base_url = base_url('member/company/index/'.$id);
+	// 	$per_page = 10;
+	// 	$uri_segment = 5;
+		
+	// 	foreach ($this->pagination_con($base_url, $total_rows, $per_page, $uri_segment) as $key => $value) {
+ //            $config[$key] = $value;
+ //        }
+ //        $this->pagination->initialize($config);
+
+ //        $this->data['page_links'] = $this->pagination->create_links();
+ //        $this->data['page'] = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+ //        $result = $this->information_model->fetch_company_by_member_id_pagination_search($id, $per_page, $this->data['page']);
+ //        if($keywords != ''){
+ //            $result = $this->information_model->fetch_company_by_member_id_pagination_search($id, $per_page, $this->data['page'], $keywords);
+ //        }
+ //        $this->data['companies'] = $result;
+ //        $this->data['user_id'] = $id;
+ //        // print_r($result);die;
+
+	// 	$this->render('member/company/list_company_view');
+	// }
+    
+    public function index($id){
+        $this->load->model('users_model');
+        $member = $this->users_model->fetch_by_id($id);
+        $company_id = json_decode($member['company_id']);
+        $keywords = '';
         if($this->input->get('search')){
             $keywords = $this->input->get('search');
         }
+        $companies = array();
+        if(isset($company_id)){
+            foreach ($company_id as $key => $value) {
+                $company = $this->information_model->fetch_by_id('company', $value);
+                $client = $this->users_model->fetch_by_id($company['client_id']);
+                $company['company'] = $client['company'];
+                $companies[] = $company;
+            }
+        }
+        $companies_search = array();
+        if($keywords != ''){
+            foreach ($companies as $key => $value) {
+                $result = array_filter($value, function ($item) use ($keywords) {
+                    if (stripos($item, $keywords) !== false) {
+                        return true;
+                    }
+                    return false;
+                });
+                if($result){
+                    $companies_search[] = $value;
+                }
+            }
+            
+        }
+
         $this->data['keywords'] = $keywords;
-        $total_rows  = $this->information_model->count_company_search_by_member_id($id);
-        if($keywords != ''){
-            $total_rows  = $this->information_model->count_company_search_by_member_id($id, $keywords);
-        }
-		$this->load->library('pagination');
-		$config = array();
-		$base_url = base_url('member/company/index/'.$id);
-		$per_page = 10;
-		$uri_segment = 5;
-		
-		foreach ($this->pagination_con($base_url, $total_rows, $per_page, $uri_segment) as $key => $value) {
-            $config[$key] = $value;
-        }
-        $this->pagination->initialize($config);
 
-        $this->data['page_links'] = $this->pagination->create_links();
-        $this->data['page'] = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-        $result = $this->information_model->fetch_company_by_member_id_pagination_search($id, $per_page, $this->data['page']);
-        if($keywords != ''){
-            $result = $this->information_model->fetch_company_by_member_id_pagination_search($id, $per_page, $this->data['page'], $keywords);
-        }
-        $this->data['companies'] = $result;
+        $this->data['companies'] = ($keywords != '') ? $companies_search : $companies;
         $this->data['user_id'] = $id;
-        // print_r($result);die;
 
-		$this->render('member/company/list_company_view');
-	}
+         $this->render('member/company/list_company_view');
+    }
 
 	public function detail($id){
 		$company = $this->information_model->fetch_company_by_id($id);
 		$this->data['company'] = $company;
-		$this->render('admin/company/detail_company_view');
+		$this->render('member/company/detail_company_view');
 	}
 
     public function detail_by_client($client_id){

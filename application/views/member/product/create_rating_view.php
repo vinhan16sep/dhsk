@@ -33,7 +33,11 @@
                         </div>
                         <div class="col-sm-9 col-md-9 col-sx-12">
                             <?php
-                            echo form_label($product['service']);
+                                $service = json_decode($product['service']);
+                                foreach ($service as $key => $value) {
+                                    echo form_label($value) . '<br>';
+                                }
+                            
                             ?>
                         </div>
                     </div>

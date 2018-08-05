@@ -23,7 +23,13 @@
                                     <tr>
                                         <td><?php echo $stt++ ?></td>
                                         <td><?php echo $value['name'] ?></td>
-                                        <td><?php echo $value['service'] ?></td>
+                                        <td>
+                                            <?php $service = json_decode($value['service']); ?>
+                                            <?php foreach ($service as $k => $v): ?>
+                                                <p class="" style="padding-left:20px;"><?php echo $v; ?></p>
+                                            <?php endforeach ?>
+                                        
+                                        </td>
                                         <?php if($value['rating'] == 0): ?>
                                             <td style="text-align: center;"><a href="<?php echo base_url('member/product/create/' . $value['id']) ?>" class="btn btn-default">Chưa đánh giá</a></td>
                                         <?php else: ?>

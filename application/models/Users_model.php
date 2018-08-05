@@ -95,4 +95,17 @@ class Users_model extends CI_Model{
 
         return false;
     }
+
+    public function update_company($id, $data = [])
+    {
+        $this->db->set($data)
+            ->where('id', $id)
+            ->update('users');
+
+        if($this->db->affected_rows() == 1){
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -10,6 +10,7 @@ class Company extends Admin_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('information_model');
+        $this->load->model('users_model');
 
         $this->excel = new PHPExcel();
 	}
@@ -80,8 +81,21 @@ class Company extends Admin_Controller{
 
     public function change_member(){
     	$member_id = $this->input->get('member_id');
-    	$company_id = $this->input->get('company_id');
-        $client = $this->information_model->fetch_by_user_id('company', $company_id);
+    	$client_id = $this->input->get('client_id');
+        $company_id = $this->input->get('company_id');
+
+        $member = $this->users_model->fetch_by_id($member_id);
+        $array_company_id = array();
+        $array_company_id = json_decode($member['company_id']);
+        unset($array_company_id[array_search($company_id, $array_company_id)]);
+        $new_company_id = [];
+        foreach ($array_company_id as $key => $value) {
+            $new_company_id[] = $value;
+        }
+        $new_company_id_json = json_encode($new_company_id);
+        $user_data = array('company_id' => $new_company_id_json);
+
+        $client = $this->information_model->fetch_by_user_id('company', $client_id);
         $upload = array();
         $upload = json_decode($client['member_id']);
         $key = array_search($member_id, $upload);
@@ -93,7 +107,7 @@ class Company extends Admin_Controller{
         $member_id_json = json_encode($newUpload);
     	$where = array('member_id' => $member_id_json);
         $success = false;
-        if($this->information_model->update('company', $company_id, $where) == true){
+        if($this->information_model->update('company', $client_id, $where) == true && $this->users_model->update_company($member_id, $user_data)){
             $success = true;
         }
     	$this->output->set_status_header(200)->set_output(json_encode(array('isExitsts' => $success)));
@@ -103,6 +117,18 @@ class Company extends Admin_Controller{
     {
         $member_id = $this->input->get('member_id');
         $client_id = $this->input->get('client_id');
+        $company_id = $this->input->get('company_id');
+
+        $member = $this->users_model->fetch_by_id($member_id);
+        $array_company_id = array();
+        $array_company_id = json_decode($member['company_id']);
+        if(isset($array_company_id)){
+            array_push($array_company_id, $company_id);
+        }else{
+            $array_company_id[] = $company_id;
+        }
+        $array_company_id = json_encode($array_company_id);
+        $user_data = array('company_id' => $array_company_id);
 
         $client = $this->information_model->fetch_by_user_id('company', $client_id);
         $upload = array();
@@ -116,7 +142,7 @@ class Company extends Admin_Controller{
         $upload = json_encode($upload);
         $where = array('member_id' => $upload);
         $success = false;
-        if($this->information_model->update('company', $client_id, $where) == true){
+        if($this->information_model->update('company', $client_id, $where) == true && $this->users_model->update_company($member_id, $user_data)){
             $success = true;
         }
         $this->output->set_status_header(200)->set_output(json_encode(array('isExitsts' => $success)));
